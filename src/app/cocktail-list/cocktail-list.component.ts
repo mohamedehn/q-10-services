@@ -13,9 +13,11 @@ export class CocktailListComponent implements OnInit{
   cocktails : Cocktail[] = [];
 
   // injection du service dans le constructeur
-  constructor(private cocktailService: CocktailService ){}
+  constructor(private cocktailService: CocktailService){}
 
   ngOnInit(): void {
-    this.cocktails = this.cocktailService.getCocktails() 
+    this.cocktailService.getCocktails().subscribe(cocktailsFromJsonFile => {
+    this.cocktails = cocktailsFromJsonFile;
+    })
   }
 }
